@@ -98,6 +98,9 @@
     <Compile Include="RJControls\CircularPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="RJControls\RJButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="RJControls\RJToggleButton.cs">
       <SubType>Component</SubType>
     </Compile>

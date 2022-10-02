@@ -121,10 +121,20 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen.Classes
             }
         }
 
+        private void DebugConsolePrint(object message,
+    [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
+        {
+#if DEBUG
+            System.Diagnostics.Trace.WriteLine($"'{memberName}'" + "\t->\t" + message.ToString());
+#endif
+        }
 
         public void ShowMessageBoxException(Exception ex)
         {
+            //DebugConsolePrint(ex.Message);
+#if DEBUG_SHOW_MESSAGEBOX
             System.Windows.Forms.MessageBox.Show(ex.Message, ex.GetType().Name);
+#endif
         }
     }
 }
