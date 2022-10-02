@@ -228,6 +228,8 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
         // Layout
         public void InitLayoutLocation()
         {
+            panel_Setting.Visible = false;
+
             string path_background_image = ConfigurationManager.AppSettings["path_image_background"];
             this.BackgroundImage = Image.FromFile(path_background_image);
 
@@ -405,7 +407,45 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
 
         private void rjButton_Setting_Click(object sender, EventArgs e)
         {
+            if (panel_Setting.Visible == false)
+            {
 
+                panel_Setting.Visible = true;
+            }
+        }
+
+        private void rjButton_Done_Click(object sender, EventArgs e)
+        {
+            panel_Setting.Visible = false;
+            // Write setting
+        }
+
+        private void rjButton_Cancel_Click(object sender, EventArgs e)
+        {
+            panel_Setting.Visible = false;
+        }
+
+        private void button_PickCredential_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                InitialDirectory = @"./",
+                Title = "Browse Google Sheet Credential",
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+
+                RestoreDirectory = true,
+
+                ReadOnlyChecked = true,
+                ShowReadOnly = true
+            };
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                DebugConsolePrint(openFileDialog1.FileName);
+                label_CredentialName.Text = Path.GetFileName(openFileDialog1.FileName);
+            }
         }
     }
 }

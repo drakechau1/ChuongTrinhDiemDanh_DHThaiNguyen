@@ -36,12 +36,9 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel_Main = new System.Windows.Forms.Panel();
-            this.rjButton_Setting = new ChuongTrinhDiemDanh_DHThaiNguyen.RJControls.RJButton();
-            this.rjButton_Reset = new ChuongTrinhDiemDanh_DHThaiNguyen.RJControls.RJButton();
             this.panel_Input = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.rjToggleButton_CheckIn = new ChuongTrinhDiemDanh_DHThaiNguyen.RJControls.RJToggleButton();
             this.label_CheckIn = new System.Windows.Forms.Label();
             this.textbox_Input = new System.Windows.Forms.TextBox();
             this.label_MaSoDB = new System.Windows.Forms.Label();
@@ -50,6 +47,17 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.label_Name = new System.Windows.Forms.Label();
             this.label_Welcome = new System.Windows.Forms.Label();
             this.panel_ProfilePicture = new System.Windows.Forms.Panel();
+            this.panel_Setting = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label_CredentialName = new System.Windows.Forms.Label();
+            this.button_PickCredential = new System.Windows.Forms.Button();
+            this.rjButton_Cancel = new ChuongTrinhDiemDanh_DHThaiNguyen.RJControls.RJButton();
+            this.rjButton_Done = new ChuongTrinhDiemDanh_DHThaiNguyen.RJControls.RJButton();
+            this.rjButton_Setting = new ChuongTrinhDiemDanh_DHThaiNguyen.RJControls.RJButton();
+            this.rjButton_Reset = new ChuongTrinhDiemDanh_DHThaiNguyen.RJControls.RJButton();
+            this.rjToggleButton_CheckIn = new ChuongTrinhDiemDanh_DHThaiNguyen.RJControls.RJToggleButton();
             this.circularPictureBox_Profile = new ChuongTrinhDiemDanh_DHThaiNguyen.RJControls.CircularPictureBox();
             this.panel_Top.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -59,6 +67,9 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.panel3.SuspendLayout();
             this.panel_ProfileInfo.SuspendLayout();
             this.panel_ProfilePicture.SuspendLayout();
+            this.panel_Setting.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox_Profile)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,7 +78,7 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.label_TotalAttendance.Dock = System.Windows.Forms.DockStyle.Top;
             this.label_TotalAttendance.Font = new System.Drawing.Font("Montserrat", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_TotalAttendance.ForeColor = System.Drawing.Color.White;
-            this.label_TotalAttendance.Location = new System.Drawing.Point(30, 164);
+            this.label_TotalAttendance.Location = new System.Drawing.Point(30, 167);
             this.label_TotalAttendance.Name = "label_TotalAttendance";
             this.label_TotalAttendance.Size = new System.Drawing.Size(350, 95);
             this.label_TotalAttendance.TabIndex = 0;
@@ -118,6 +129,7 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             // panel_Main
             // 
             this.panel_Main.BackColor = System.Drawing.Color.Transparent;
+            this.panel_Main.Controls.Add(this.panel_Setting);
             this.panel_Main.Controls.Add(this.rjButton_Setting);
             this.panel_Main.Controls.Add(this.rjButton_Reset);
             this.panel_Main.Controls.Add(this.panel_Input);
@@ -129,48 +141,6 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.panel_Main.Size = new System.Drawing.Size(1708, 1045);
             this.panel_Main.TabIndex = 2;
             // 
-            // rjButton_Setting
-            // 
-            this.rjButton_Setting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rjButton_Setting.BackColor = System.Drawing.Color.Transparent;
-            this.rjButton_Setting.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rjButton_Setting.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rjButton_Setting.BackgroundImage")));
-            this.rjButton_Setting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.rjButton_Setting.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButton_Setting.BorderRadius = 0;
-            this.rjButton_Setting.BorderSize = 0;
-            this.rjButton_Setting.FlatAppearance.BorderSize = 0;
-            this.rjButton_Setting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton_Setting.ForeColor = System.Drawing.Color.White;
-            this.rjButton_Setting.Location = new System.Drawing.Point(22, 971);
-            this.rjButton_Setting.Name = "rjButton_Setting";
-            this.rjButton_Setting.Size = new System.Drawing.Size(50, 50);
-            this.rjButton_Setting.TabIndex = 6;
-            this.rjButton_Setting.TextColor = System.Drawing.Color.White;
-            this.rjButton_Setting.UseVisualStyleBackColor = false;
-            this.rjButton_Setting.Click += new System.EventHandler(this.rjButton_Setting_Click);
-            // 
-            // rjButton_Reset
-            // 
-            this.rjButton_Reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rjButton_Reset.BackColor = System.Drawing.Color.Transparent;
-            this.rjButton_Reset.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rjButton_Reset.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rjButton_Reset.BackgroundImage")));
-            this.rjButton_Reset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.rjButton_Reset.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButton_Reset.BorderRadius = 0;
-            this.rjButton_Reset.BorderSize = 0;
-            this.rjButton_Reset.FlatAppearance.BorderSize = 0;
-            this.rjButton_Reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton_Reset.ForeColor = System.Drawing.Color.White;
-            this.rjButton_Reset.Location = new System.Drawing.Point(22, 900);
-            this.rjButton_Reset.Name = "rjButton_Reset";
-            this.rjButton_Reset.Size = new System.Drawing.Size(50, 50);
-            this.rjButton_Reset.TabIndex = 5;
-            this.rjButton_Reset.TextColor = System.Drawing.Color.White;
-            this.rjButton_Reset.UseVisualStyleBackColor = false;
-            this.rjButton_Reset.Click += new System.EventHandler(this.rjButton_Reset_Click);
-            // 
             // panel_Input
             // 
             this.panel_Input.BackColor = System.Drawing.Color.Transparent;
@@ -180,9 +150,9 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.panel_Input.Controls.Add(this.panel4);
             this.panel_Input.Controls.Add(this.textbox_Input);
             this.panel_Input.Controls.Add(this.label_MaSoDB);
-            this.panel_Input.Location = new System.Drawing.Point(300, 773);
+            this.panel_Input.Location = new System.Drawing.Point(396, 770);
             this.panel_Input.Name = "panel_Input";
-            this.panel_Input.Padding = new System.Windows.Forms.Padding(30, 17, 30, 0);
+            this.panel_Input.Padding = new System.Windows.Forms.Padding(30, 20, 30, 0);
             this.panel_Input.Size = new System.Drawing.Size(410, 272);
             this.panel_Input.TabIndex = 2;
             // 
@@ -191,7 +161,7 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.panel4.Controls.Add(this.panel3);
             this.panel4.Controls.Add(this.label_CheckIn);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(30, 105);
+            this.panel4.Location = new System.Drawing.Point(30, 108);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(0, 15, 0, 0);
             this.panel4.Size = new System.Drawing.Size(350, 59);
@@ -205,23 +175,6 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(87, 34);
             this.panel3.TabIndex = 4;
-            // 
-            // rjToggleButton_CheckIn
-            // 
-            this.rjToggleButton_CheckIn.BackColor = System.Drawing.Color.Transparent;
-            this.rjToggleButton_CheckIn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rjToggleButton_CheckIn.ForeColor = System.Drawing.Color.Transparent;
-            this.rjToggleButton_CheckIn.Location = new System.Drawing.Point(0, 0);
-            this.rjToggleButton_CheckIn.MinimumSize = new System.Drawing.Size(45, 22);
-            this.rjToggleButton_CheckIn.Name = "rjToggleButton_CheckIn";
-            this.rjToggleButton_CheckIn.OffBackColor = System.Drawing.Color.Gainsboro;
-            this.rjToggleButton_CheckIn.OffToggleColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(204)))));
-            this.rjToggleButton_CheckIn.OnBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(204)))));
-            this.rjToggleButton_CheckIn.OnToggleColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(54)))));
-            this.rjToggleButton_CheckIn.Size = new System.Drawing.Size(87, 34);
-            this.rjToggleButton_CheckIn.TabIndex = 3;
-            this.rjToggleButton_CheckIn.UseVisualStyleBackColor = false;
-            this.rjToggleButton_CheckIn.CheckedChanged += new System.EventHandler(this.rjToggleButton_CheckIn_CheckedChanged);
             // 
             // label_CheckIn
             // 
@@ -239,7 +192,7 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             // 
             this.textbox_Input.Dock = System.Windows.Forms.DockStyle.Top;
             this.textbox_Input.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textbox_Input.Location = new System.Drawing.Point(30, 71);
+            this.textbox_Input.Location = new System.Drawing.Point(30, 74);
             this.textbox_Input.Name = "textbox_Input";
             this.textbox_Input.Size = new System.Drawing.Size(350, 34);
             this.textbox_Input.TabIndex = 1;
@@ -251,7 +204,7 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.label_MaSoDB.Dock = System.Windows.Forms.DockStyle.Top;
             this.label_MaSoDB.Font = new System.Drawing.Font("Montserrat SemiBold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_MaSoDB.ForeColor = System.Drawing.Color.White;
-            this.label_MaSoDB.Location = new System.Drawing.Point(30, 17);
+            this.label_MaSoDB.Location = new System.Drawing.Point(30, 20);
             this.label_MaSoDB.Name = "label_MaSoDB";
             this.label_MaSoDB.Padding = new System.Windows.Forms.Padding(0, 0, 0, 15);
             this.label_MaSoDB.Size = new System.Drawing.Size(280, 54);
@@ -322,6 +275,171 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.panel_ProfilePicture.Size = new System.Drawing.Size(600, 600);
             this.panel_ProfilePicture.TabIndex = 4;
             // 
+            // panel_Setting
+            // 
+            this.panel_Setting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel_Setting.BackColor = System.Drawing.Color.White;
+            this.panel_Setting.Controls.Add(this.panel7);
+            this.panel_Setting.Controls.Add(this.panel6);
+            this.panel_Setting.Controls.Add(this.label1);
+            this.panel_Setting.Location = new System.Drawing.Point(83, 851);
+            this.panel_Setting.Name = "panel_Setting";
+            this.panel_Setting.Size = new System.Drawing.Size(252, 177);
+            this.panel_Setting.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Gainsboro;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(252, 41);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Cài đặt";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.rjButton_Cancel);
+            this.panel6.Controls.Add(this.rjButton_Done);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel6.Location = new System.Drawing.Point(0, 127);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(252, 50);
+            this.panel6.TabIndex = 1;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.button_PickCredential);
+            this.panel7.Controls.Add(this.label_CredentialName);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(0, 41);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(252, 86);
+            this.panel7.TabIndex = 2;
+            // 
+            // label_CredentialName
+            // 
+            this.label_CredentialName.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label_CredentialName.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Italic);
+            this.label_CredentialName.Location = new System.Drawing.Point(0, 54);
+            this.label_CredentialName.Name = "label_CredentialName";
+            this.label_CredentialName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label_CredentialName.Size = new System.Drawing.Size(252, 32);
+            this.label_CredentialName.TabIndex = 2;
+            this.label_CredentialName.Text = "credential_1.json";
+            this.label_CredentialName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_PickCredential
+            // 
+            this.button_PickCredential.Location = new System.Drawing.Point(74, 12);
+            this.button_PickCredential.Name = "button_PickCredential";
+            this.button_PickCredential.Size = new System.Drawing.Size(100, 35);
+            this.button_PickCredential.TabIndex = 3;
+            this.button_PickCredential.Text = "Chứng chỉ";
+            this.button_PickCredential.UseVisualStyleBackColor = true;
+            this.button_PickCredential.Click += new System.EventHandler(this.button_PickCredential_Click);
+            // 
+            // rjButton_Cancel
+            // 
+            this.rjButton_Cancel.BackColor = System.Drawing.Color.LightGray;
+            this.rjButton_Cancel.BackgroundColor = System.Drawing.Color.LightGray;
+            this.rjButton_Cancel.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rjButton_Cancel.BorderRadius = 10;
+            this.rjButton_Cancel.BorderSize = 0;
+            this.rjButton_Cancel.FlatAppearance.BorderSize = 0;
+            this.rjButton_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton_Cancel.Font = new System.Drawing.Font("Montserrat", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rjButton_Cancel.ForeColor = System.Drawing.Color.White;
+            this.rjButton_Cancel.Location = new System.Drawing.Point(138, 5);
+            this.rjButton_Cancel.Name = "rjButton_Cancel";
+            this.rjButton_Cancel.Size = new System.Drawing.Size(80, 40);
+            this.rjButton_Cancel.TabIndex = 1;
+            this.rjButton_Cancel.Text = "Hủy";
+            this.rjButton_Cancel.TextColor = System.Drawing.Color.White;
+            this.rjButton_Cancel.UseVisualStyleBackColor = false;
+            this.rjButton_Cancel.Click += new System.EventHandler(this.rjButton_Cancel_Click);
+            // 
+            // rjButton_Done
+            // 
+            this.rjButton_Done.BackColor = System.Drawing.Color.Lime;
+            this.rjButton_Done.BackgroundColor = System.Drawing.Color.Lime;
+            this.rjButton_Done.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rjButton_Done.BorderRadius = 10;
+            this.rjButton_Done.BorderSize = 0;
+            this.rjButton_Done.FlatAppearance.BorderSize = 0;
+            this.rjButton_Done.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton_Done.Font = new System.Drawing.Font("Montserrat", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rjButton_Done.ForeColor = System.Drawing.Color.White;
+            this.rjButton_Done.Location = new System.Drawing.Point(27, 5);
+            this.rjButton_Done.Name = "rjButton_Done";
+            this.rjButton_Done.Size = new System.Drawing.Size(80, 40);
+            this.rjButton_Done.TabIndex = 0;
+            this.rjButton_Done.Text = "Xong";
+            this.rjButton_Done.TextColor = System.Drawing.Color.White;
+            this.rjButton_Done.UseVisualStyleBackColor = false;
+            this.rjButton_Done.Click += new System.EventHandler(this.rjButton_Done_Click);
+            // 
+            // rjButton_Setting
+            // 
+            this.rjButton_Setting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.rjButton_Setting.BackColor = System.Drawing.Color.Transparent;
+            this.rjButton_Setting.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rjButton_Setting.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rjButton_Setting.BackgroundImage")));
+            this.rjButton_Setting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.rjButton_Setting.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rjButton_Setting.BorderRadius = 0;
+            this.rjButton_Setting.BorderSize = 0;
+            this.rjButton_Setting.FlatAppearance.BorderSize = 0;
+            this.rjButton_Setting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton_Setting.ForeColor = System.Drawing.Color.White;
+            this.rjButton_Setting.Location = new System.Drawing.Point(22, 971);
+            this.rjButton_Setting.Name = "rjButton_Setting";
+            this.rjButton_Setting.Size = new System.Drawing.Size(50, 50);
+            this.rjButton_Setting.TabIndex = 6;
+            this.rjButton_Setting.TextColor = System.Drawing.Color.White;
+            this.rjButton_Setting.UseVisualStyleBackColor = false;
+            this.rjButton_Setting.Click += new System.EventHandler(this.rjButton_Setting_Click);
+            // 
+            // rjButton_Reset
+            // 
+            this.rjButton_Reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.rjButton_Reset.BackColor = System.Drawing.Color.Transparent;
+            this.rjButton_Reset.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rjButton_Reset.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rjButton_Reset.BackgroundImage")));
+            this.rjButton_Reset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.rjButton_Reset.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rjButton_Reset.BorderRadius = 0;
+            this.rjButton_Reset.BorderSize = 0;
+            this.rjButton_Reset.FlatAppearance.BorderSize = 0;
+            this.rjButton_Reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton_Reset.ForeColor = System.Drawing.Color.White;
+            this.rjButton_Reset.Location = new System.Drawing.Point(22, 900);
+            this.rjButton_Reset.Name = "rjButton_Reset";
+            this.rjButton_Reset.Size = new System.Drawing.Size(50, 50);
+            this.rjButton_Reset.TabIndex = 5;
+            this.rjButton_Reset.TextColor = System.Drawing.Color.White;
+            this.rjButton_Reset.UseVisualStyleBackColor = false;
+            this.rjButton_Reset.Click += new System.EventHandler(this.rjButton_Reset_Click);
+            // 
+            // rjToggleButton_CheckIn
+            // 
+            this.rjToggleButton_CheckIn.BackColor = System.Drawing.Color.Transparent;
+            this.rjToggleButton_CheckIn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rjToggleButton_CheckIn.ForeColor = System.Drawing.Color.Transparent;
+            this.rjToggleButton_CheckIn.Location = new System.Drawing.Point(0, 0);
+            this.rjToggleButton_CheckIn.MinimumSize = new System.Drawing.Size(45, 22);
+            this.rjToggleButton_CheckIn.Name = "rjToggleButton_CheckIn";
+            this.rjToggleButton_CheckIn.OffBackColor = System.Drawing.Color.Gainsboro;
+            this.rjToggleButton_CheckIn.OffToggleColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(204)))));
+            this.rjToggleButton_CheckIn.OnBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(204)))));
+            this.rjToggleButton_CheckIn.OnToggleColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(54)))));
+            this.rjToggleButton_CheckIn.Size = new System.Drawing.Size(87, 34);
+            this.rjToggleButton_CheckIn.TabIndex = 3;
+            this.rjToggleButton_CheckIn.UseVisualStyleBackColor = false;
+            this.rjToggleButton_CheckIn.CheckedChanged += new System.EventHandler(this.rjToggleButton_CheckIn_CheckedChanged);
+            // 
             // circularPictureBox_Profile
             // 
             this.circularPictureBox_Profile.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
@@ -367,6 +485,9 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.panel_ProfileInfo.ResumeLayout(false);
             this.panel_ProfileInfo.PerformLayout();
             this.panel_ProfilePicture.ResumeLayout(false);
+            this.panel_Setting.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox_Profile)).EndInit();
             this.ResumeLayout(false);
 
@@ -395,6 +516,14 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
         private System.Windows.Forms.Panel panel3;
         private RJControls.RJButton rjButton_Setting;
         private RJControls.RJButton rjButton_Reset;
+        private System.Windows.Forms.Panel panel_Setting;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel6;
+        private RJControls.RJButton rjButton_Cancel;
+        private RJControls.RJButton rjButton_Done;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button_PickCredential;
+        private System.Windows.Forms.Label label_CredentialName;
     }
 }
 
