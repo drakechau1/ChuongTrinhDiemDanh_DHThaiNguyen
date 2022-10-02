@@ -36,6 +36,12 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel_Main = new System.Windows.Forms.Panel();
+            this.panel_Setting = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.button_PickCredential = new System.Windows.Forms.Button();
+            this.label_CredentialName = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel_Input = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -47,12 +53,6 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.label_Name = new System.Windows.Forms.Label();
             this.label_Welcome = new System.Windows.Forms.Label();
             this.panel_ProfilePicture = new System.Windows.Forms.Panel();
-            this.panel_Setting = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.label_CredentialName = new System.Windows.Forms.Label();
-            this.button_PickCredential = new System.Windows.Forms.Button();
             this.rjButton_Cancel = new ChuongTrinhDiemDanh_DHThaiNguyen.RJControls.RJButton();
             this.rjButton_Done = new ChuongTrinhDiemDanh_DHThaiNguyen.RJControls.RJButton();
             this.rjButton_Setting = new ChuongTrinhDiemDanh_DHThaiNguyen.RJControls.RJButton();
@@ -62,14 +62,14 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.panel_Top.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_Main.SuspendLayout();
+            this.panel_Setting.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.panel_Input.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel_ProfileInfo.SuspendLayout();
             this.panel_ProfilePicture.SuspendLayout();
-            this.panel_Setting.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox_Profile)).BeginInit();
             this.SuspendLayout();
             // 
@@ -141,6 +141,72 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.panel_Main.Size = new System.Drawing.Size(1708, 1045);
             this.panel_Main.TabIndex = 2;
             // 
+            // panel_Setting
+            // 
+            this.panel_Setting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel_Setting.BackColor = System.Drawing.Color.White;
+            this.panel_Setting.Controls.Add(this.panel7);
+            this.panel_Setting.Controls.Add(this.panel6);
+            this.panel_Setting.Controls.Add(this.label1);
+            this.panel_Setting.Location = new System.Drawing.Point(83, 851);
+            this.panel_Setting.Name = "panel_Setting";
+            this.panel_Setting.Size = new System.Drawing.Size(252, 177);
+            this.panel_Setting.TabIndex = 7;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.button_PickCredential);
+            this.panel7.Controls.Add(this.label_CredentialName);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(0, 41);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(252, 86);
+            this.panel7.TabIndex = 2;
+            // 
+            // button_PickCredential
+            // 
+            this.button_PickCredential.Location = new System.Drawing.Point(74, 12);
+            this.button_PickCredential.Name = "button_PickCredential";
+            this.button_PickCredential.Size = new System.Drawing.Size(100, 35);
+            this.button_PickCredential.TabIndex = 3;
+            this.button_PickCredential.Text = "Chứng chỉ";
+            this.button_PickCredential.UseVisualStyleBackColor = true;
+            this.button_PickCredential.Click += new System.EventHandler(this.button_PickCredential_Click);
+            // 
+            // label_CredentialName
+            // 
+            this.label_CredentialName.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label_CredentialName.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Italic);
+            this.label_CredentialName.Location = new System.Drawing.Point(0, 54);
+            this.label_CredentialName.Name = "label_CredentialName";
+            this.label_CredentialName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label_CredentialName.Size = new System.Drawing.Size(252, 32);
+            this.label_CredentialName.TabIndex = 2;
+            this.label_CredentialName.Text = "credential_1.json";
+            this.label_CredentialName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.rjButton_Cancel);
+            this.panel6.Controls.Add(this.rjButton_Done);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel6.Location = new System.Drawing.Point(0, 127);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(252, 50);
+            this.panel6.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Gainsboro;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(252, 41);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Cài đặt";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // panel_Input
             // 
             this.panel_Input.BackColor = System.Drawing.Color.Transparent;
@@ -197,6 +263,7 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.textbox_Input.Size = new System.Drawing.Size(350, 34);
             this.textbox_Input.TabIndex = 1;
             this.textbox_Input.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textbox_Input_KeyDown);
+            this.textbox_Input.Leave += new System.EventHandler(this.textbox_Input_Leave);
             // 
             // label_MaSoDB
             // 
@@ -218,7 +285,7 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.panel_ProfileInfo.Controls.Add(this.label_Welcome);
             this.panel_ProfileInfo.Location = new System.Drawing.Point(62, 325);
             this.panel_ProfileInfo.Name = "panel_ProfileInfo";
-            this.panel_ProfileInfo.Size = new System.Drawing.Size(870, 428);
+            this.panel_ProfileInfo.Size = new System.Drawing.Size(950, 428);
             this.panel_ProfileInfo.TabIndex = 3;
             // 
             // label_Organization
@@ -227,11 +294,11 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.label_Organization.Dock = System.Windows.Forms.DockStyle.Top;
             this.label_Organization.Font = new System.Drawing.Font("Montserrat SemiBold", 19F, System.Drawing.FontStyle.Bold);
             this.label_Organization.ForeColor = System.Drawing.Color.White;
-            this.label_Organization.Location = new System.Drawing.Point(0, 162);
-            this.label_Organization.MaximumSize = new System.Drawing.Size(870, 0);
-            this.label_Organization.MinimumSize = new System.Drawing.Size(870, 0);
+            this.label_Organization.Location = new System.Drawing.Point(0, 154);
+            this.label_Organization.MaximumSize = new System.Drawing.Size(950, 0);
+            this.label_Organization.MinimumSize = new System.Drawing.Size(950, 0);
             this.label_Organization.Name = "label_Organization";
-            this.label_Organization.Size = new System.Drawing.Size(870, 132);
+            this.label_Organization.Size = new System.Drawing.Size(950, 88);
             this.label_Organization.TabIndex = 2;
             this.label_Organization.Text = "Ủy viên dự khuyết Ban Chấp hành Trung ương Đảng, Phó Bí thư Tỉnh ủy, Chủ tịch UBN" +
     "D tỉnh Thái Nguyên ";
@@ -243,23 +310,26 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.label_Name.Dock = System.Windows.Forms.DockStyle.Top;
             this.label_Name.Font = new System.Drawing.Font("#9Slide05 SVNUT Triumph", 43.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Name.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label_Name.Location = new System.Drawing.Point(0, 60);
-            this.label_Name.MaximumSize = new System.Drawing.Size(870, 0);
-            this.label_Name.MinimumSize = new System.Drawing.Size(870, 0);
+            this.label_Name.Location = new System.Drawing.Point(0, 52);
+            this.label_Name.MaximumSize = new System.Drawing.Size(950, 0);
+            this.label_Name.MinimumSize = new System.Drawing.Size(950, 0);
             this.label_Name.Name = "label_Name";
-            this.label_Name.Size = new System.Drawing.Size(870, 102);
+            this.label_Name.Size = new System.Drawing.Size(950, 102);
             this.label_Name.TabIndex = 1;
             this.label_Name.Text = "Trịnh Việt Hùng";
             this.label_Name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_Welcome
             // 
+            this.label_Welcome.AutoSize = true;
             this.label_Welcome.Dock = System.Windows.Forms.DockStyle.Top;
             this.label_Welcome.Font = new System.Drawing.Font("Montserrat SemiBold", 22.2F, System.Drawing.FontStyle.Bold);
             this.label_Welcome.ForeColor = System.Drawing.Color.White;
             this.label_Welcome.Location = new System.Drawing.Point(0, 0);
+            this.label_Welcome.MaximumSize = new System.Drawing.Size(950, 0);
+            this.label_Welcome.MinimumSize = new System.Drawing.Size(950, 0);
             this.label_Welcome.Name = "label_Welcome";
-            this.label_Welcome.Size = new System.Drawing.Size(870, 60);
+            this.label_Welcome.Size = new System.Drawing.Size(950, 52);
             this.label_Welcome.TabIndex = 0;
             this.label_Welcome.Text = "Chào mừng Đại biểu";
             this.label_Welcome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -274,72 +344,6 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.panel_ProfilePicture.Padding = new System.Windows.Forms.Padding(25);
             this.panel_ProfilePicture.Size = new System.Drawing.Size(600, 600);
             this.panel_ProfilePicture.TabIndex = 4;
-            // 
-            // panel_Setting
-            // 
-            this.panel_Setting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel_Setting.BackColor = System.Drawing.Color.White;
-            this.panel_Setting.Controls.Add(this.panel7);
-            this.panel_Setting.Controls.Add(this.panel6);
-            this.panel_Setting.Controls.Add(this.label1);
-            this.panel_Setting.Location = new System.Drawing.Point(83, 851);
-            this.panel_Setting.Name = "panel_Setting";
-            this.panel_Setting.Size = new System.Drawing.Size(252, 177);
-            this.panel_Setting.TabIndex = 7;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Gainsboro;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 41);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Cài đặt";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.rjButton_Cancel);
-            this.panel6.Controls.Add(this.rjButton_Done);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 127);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(252, 50);
-            this.panel6.TabIndex = 1;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.button_PickCredential);
-            this.panel7.Controls.Add(this.label_CredentialName);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(0, 41);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(252, 86);
-            this.panel7.TabIndex = 2;
-            // 
-            // label_CredentialName
-            // 
-            this.label_CredentialName.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label_CredentialName.Font = new System.Drawing.Font("Montserrat", 9F, System.Drawing.FontStyle.Italic);
-            this.label_CredentialName.Location = new System.Drawing.Point(0, 54);
-            this.label_CredentialName.Name = "label_CredentialName";
-            this.label_CredentialName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label_CredentialName.Size = new System.Drawing.Size(252, 32);
-            this.label_CredentialName.TabIndex = 2;
-            this.label_CredentialName.Text = "credential_1.json";
-            this.label_CredentialName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button_PickCredential
-            // 
-            this.button_PickCredential.Location = new System.Drawing.Point(74, 12);
-            this.button_PickCredential.Name = "button_PickCredential";
-            this.button_PickCredential.Size = new System.Drawing.Size(100, 35);
-            this.button_PickCredential.TabIndex = 3;
-            this.button_PickCredential.Text = "Chứng chỉ";
-            this.button_PickCredential.UseVisualStyleBackColor = true;
-            this.button_PickCredential.Click += new System.EventHandler(this.button_PickCredential_Click);
             // 
             // rjButton_Cancel
             // 
@@ -450,7 +454,6 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.circularPictureBox_Profile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.circularPictureBox_Profile.ErrorImage = ((System.Drawing.Image)(resources.GetObject("circularPictureBox_Profile.ErrorImage")));
             this.circularPictureBox_Profile.GradientAngle = 50F;
-            this.circularPictureBox_Profile.Image = ((System.Drawing.Image)(resources.GetObject("circularPictureBox_Profile.Image")));
             this.circularPictureBox_Profile.InitialImage = ((System.Drawing.Image)(resources.GetObject("circularPictureBox_Profile.InitialImage")));
             this.circularPictureBox_Profile.Location = new System.Drawing.Point(25, 25);
             this.circularPictureBox_Profile.Name = "circularPictureBox_Profile";
@@ -477,6 +480,9 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.panel_Top.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel_Main.ResumeLayout(false);
+            this.panel_Setting.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.panel_Input.ResumeLayout(false);
             this.panel_Input.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -485,9 +491,6 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.panel_ProfileInfo.ResumeLayout(false);
             this.panel_ProfileInfo.PerformLayout();
             this.panel_ProfilePicture.ResumeLayout(false);
-            this.panel_Setting.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox_Profile)).EndInit();
             this.ResumeLayout(false);
 

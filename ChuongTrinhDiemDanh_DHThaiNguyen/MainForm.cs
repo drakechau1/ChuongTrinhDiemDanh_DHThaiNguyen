@@ -37,6 +37,8 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
         string path_images;
         string[] allImagePaths;
 
+        Thread thread;
+
         #endregion
 
         #region debug functions
@@ -136,6 +138,11 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             return allImagePaths;
         }
         // Update Profile Image
+        public void LoadInitImage()
+        {
+            string error_img_path = ConfigurationManager.AppSettings["path_image_init"];
+            circularPictureBox_Profile.Image = Image.FromFile(error_img_path);
+        }
         public void LoadErrorImage()
         {
             string error_img_path = ConfigurationManager.AppSettings["path_image_error"];
@@ -233,12 +240,21 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             string path_background_image = ConfigurationManager.AppSettings["path_image_background"];
             this.BackgroundImage = Image.FromFile(path_background_image);
 
+            LoadInitImage();
+
+            label_Welcome.Text = "";
+            label_Name.Text = "Chào mừng\nĐại biểu về tham dự Đại hội";
+            label_Organization.Text = "";
+            label_Welcome.Visible = false;
+            label_Organization.Visible = false;
+
+
             DebugConsolePrint($"form size: (w,h) = ({this.Width},{this.Height})");
-            int[] panelInputLocation = { (int)(this.Width * 0.175), (int)(this.Height * 0.68) };
+            int[] panelInputLocation = { (int)(this.Width * 0.162), (int)(this.Height * 0.68) };
             DebugConsolePrint($"new panel input location: (x,y) = ({panelInputLocation[0]},{panelInputLocation[1]})");
             panel_Input.Location = new Point(panelInputLocation[0], panelInputLocation[1]);
 
-            int[] panelProfileInfoLocation = { (int)(this.Width * 0.06), (int)(this.Height * 0.37) };
+            int[] panelProfileInfoLocation = { (int)(this.Width * 0.08), (int)(this.Height * 0.37) };
             DebugConsolePrint($"new panel input location: (x,y) = ({panelProfileInfoLocation[0]},{panelProfileInfoLocation[1]})");
             panel_ProfileInfo.Location = new Point(panelProfileInfoLocation[0], panelProfileInfoLocation[1]);
 
@@ -256,7 +272,7 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
 
             List<IList<object>> resetValuesList = new List<IList<object>>();
 
-            for (int i = 0; i < 204; i++)
+            for (int i = 0; i < sheetData_data.Count; i++)
             {
                 resetValuesList.Add(resetValues);
             }
@@ -284,38 +300,47 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
         private void textbox_Input_KeyDown(object sender, KeyEventArgs e)
         {
             string inputCode = textbox_Input.Text;
+
             if (e.KeyCode == Keys.Enter && inputCode.Length > 0)
             {
                 if (CheckInternetConnection())
                 {
-                    bool isFound = false;
-                    foreach (var rowData in sheetData_data)                     // ID index in spreadsheet
+                    if (sheetData_data != null)
                     {
-                        if (rowData[1].ToString().Equals(inputCode))            // Check ID
+                        bool isFound = false;
+                        foreach (var rowData in sheetData_data)                     // ID index in spreadsheet
                         {
-                            label_Welcome.Text = "Chào mừng Đại biểu";
-                            label_Name.Text = rowData[2].ToString();            // Họ và tên
-                            label_Organization.Text = rowData[3].ToString();    // Đoàn
+                            if (rowData[1].ToString().Equals(inputCode))            // Check ID
+                            {
+                                label_Welcome.Visible = true;
+                                label_Welcome.Text = "Chào mừng Đại biểu";
+                                label_Name.Text = rowData[2].ToString();            // Họ và tên
+                                label_Organization.Visible = true;
+                                label_Organization.Text = rowData[3].ToString();    // Đoàn
 
-                            LoadProfileImage(inputCode);
+                                LoadProfileImage(inputCode);
 
-                            UpdateAttendanceStatus(Int32.Parse(rowData[0].ToString()) /*Index of update range*/);
+                                UpdateAttendanceStatus(Int32.Parse(rowData[0].ToString()) /*Index of update range*/);
 
-                            isFound = true;
-                            break;
+                                isFound = true;
+                                break;
+                            }
+                        }
+
+                        if (!isFound)
+                        {
+                            label_Welcome.Text = "";
+                            label_Name.Text = "Dữ liệu không tồn tại";      // Họ và tên
+                            label_Organization.Text = "";                   // Đoàn
+                            LoadErrorImage();
                         }
                     }
-
-                    if (!isFound)
+                    else
                     {
-                        label_Welcome.Text = "";
-                        label_Name.Text = "Dữ liệu không tồn tại";      // Họ và tên
-                        label_Organization.Text = "";                   // Đoàn
-                        LoadErrorImage();
+                        MessageBox.Show("Vui lòng kiểm tra lại chứng chỉ của Google Sheet API");
                     }
-
-                    textbox_Input.Clear();
                 }
+                textbox_Input.Clear();
             }
         }
 
@@ -331,12 +356,12 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
                 label_CheckIn.Text = "Check-in";
                 SetAppSettingValue("VAR_rjToggle_checking_status", "0");
             }
-            textbox_Input.Focus();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Environment.Exit(Environment.ExitCode);
+            if (thread != null)
+                thread.Abort();
         }
 
         private void MainForm_SizeChanged(object sender, EventArgs e)
@@ -354,29 +379,35 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
                 {
                     string[] batchRange = { sheetRange_data, sheetRange_total };
                     IList<ValueRange> valueRanges = spreadSheet.ReadBatchData(batchRange);
-                    int attempt = 5;
+                    int attempt = 10;
                     while (valueRanges == null && attempt > 0)
                     {
                         valueRanges = spreadSheet.ReadBatchData(batchRange);
                         --attempt;
+                        Task.Delay(500).Wait();
                     }
 
-                    sheetData_data = valueRanges[0].Values;
-                    sheetData_total = valueRanges[1].Values;
+                    if (valueRanges != null)
+                    {
+                        sheetData_data = valueRanges[0].Values;
+                        sheetData_total = valueRanges[1].Values;
 
-                    label_TotalAttendance.Text = $"Số Đại biểu: {sheetData_total[0][1]}/{sheetData_total[0][0]}" /*total*/+
-                        $"\n({sheetData_total[0][2]})" /*percent*/;
+                        label_TotalAttendance.Text = $"Số Đại biểu: {sheetData_total[0][1]}/{sheetData_total[0][0]}" /*total*/+
+                            $"\n({sheetData_total[0][2]})" /*percent*/;
 
-                    DebugConsolePrint($"Number: {sheetData_total[0][1]} - Total: {sheetData_total[0][0]} - Percent: {sheetData_total[0][2]}");
+                        DebugConsolePrint($"Number: {sheetData_total[0][1]} - Total: {sheetData_total[0][0]} - Percent: {sheetData_total[0][2]}");
 
-                    Task.Delay(500);
+                        Task.Delay(500);
 
-                    Thread thread = new Thread(new ThreadStart(ThreadUpdateTotalAttendance));
-                    thread.Start();
+                        thread = new Thread(new ThreadStart(ThreadUpdateTotalAttendance));
+                        thread.Start();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vui lòng kiểm tra lại chứng chỉ của Google Sheet API");
+                    }
                 }
             }
-
-            textbox_Input.Focus();
         }
         #endregion
 
@@ -409,19 +440,32 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
         {
             if (panel_Setting.Visible == false)
             {
-
+                string credential_path = ConfigurationManager.AppSettings["google_sheet_credential_path"];
+                label_CredentialName.Text = Path.GetFileName(credential_path);
                 panel_Setting.Visible = true;
             }
         }
 
         private void rjButton_Done_Click(object sender, EventArgs e)
         {
-            panel_Setting.Visible = false;
-            // Write setting
+            DialogResult dialogResult = MessageBox.Show("Chương trình cần được khởi động để cập nhật thông số được lưu.", "Thông báo", MessageBoxButtons.OKCancel);
+            if (dialogResult == DialogResult.OK)
+            {
+                // Write setting
+                string last_credential_path = ConfigurationManager.AppSettings["path_temp_picked_credential"];
+                SetAppSettingValue("google_sheet_credential_path", last_credential_path);
+
+                Application.Restart();
+            }
+            else if (dialogResult == DialogResult.Cancel)
+            {
+                //do something else
+            }
         }
 
         private void rjButton_Cancel_Click(object sender, EventArgs e)
         {
+
             panel_Setting.Visible = false;
         }
 
@@ -431,12 +475,10 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             {
                 InitialDirectory = @"./",
                 Title = "Browse Google Sheet Credential",
-
+                Filter = "Json files (*.json)|*.json|All files (*.*)|*.*",
                 CheckFileExists = true,
                 CheckPathExists = true,
-
                 RestoreDirectory = true,
-
                 ReadOnlyChecked = true,
                 ShowReadOnly = true
             };
@@ -445,7 +487,13 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             {
                 DebugConsolePrint(openFileDialog1.FileName);
                 label_CredentialName.Text = Path.GetFileName(openFileDialog1.FileName);
+                SetAppSettingValue("path_temp_picked_credential", openFileDialog1.FileName);
             }
+        }
+
+        private void textbox_Input_Leave(object sender, EventArgs e)
+        {
+            textbox_Input.Focus();
         }
     }
 }
