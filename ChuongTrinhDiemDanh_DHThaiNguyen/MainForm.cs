@@ -250,7 +250,7 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
 
 
             DebugConsolePrint($"form size: (w,h) = ({this.Width},{this.Height})");
-            int[] panelInputLocation = { (int)(this.Width * 0.162), (int)(this.Height * 0.68) };
+            int[] panelInputLocation = { (int)(this.Width * 0.165), (int)(this.Height * 0.68) };
             DebugConsolePrint($"new panel input location: (x,y) = ({panelInputLocation[0]},{panelInputLocation[1]})");
             panel_Input.Location = new Point(panelInputLocation[0], panelInputLocation[1]);
 
@@ -312,11 +312,18 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
                         {
                             if (rowData[1].ToString().Equals(inputCode))            // Check ID
                             {
-                                label_Welcome.Visible = true;
-                                label_Welcome.Text = "Chào mừng Đại biểu";
-                                label_Name.Text = rowData[2].ToString();            // Họ và tên
-                                label_Organization.Visible = true;
-                                label_Organization.Text = rowData[3].ToString();    // Đoàn
+                                try
+                                {
+                                    label_Welcome.Visible = true;
+                                    label_Welcome.Text = "Chào mừng Đại biểu";
+                                    label_Name.Text = rowData[2].ToString();            // Họ và tên
+                                    label_Organization.Visible = true;
+                                    label_Organization.Text = rowData[3].ToString();    // Đoàn
+                                }
+                                catch (Exception ex)
+                                {
+                                    DebugConsolePrint(ex.Message);
+                                }
 
                                 LoadProfileImage(inputCode);
 
@@ -340,6 +347,10 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
                         MessageBox.Show("Vui lòng kiểm tra lại chứng chỉ của Google Sheet API");
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Vui lòng kiểm tra lại đường truyền mạng. Chương trình sẽ tiếp tục khi có internet", "Cảnh báo");
+                }
                 textbox_Input.Clear();
             }
         }
@@ -360,8 +371,9 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (thread != null)
-                thread.Abort();
+            //if (thread != null)
+            //    thread.Abort();
+            Environment.Exit(Environment.ExitCode);
         }
 
         private void MainForm_SizeChanged(object sender, EventArgs e)
@@ -373,41 +385,54 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
         {
             Task.Delay(500);
 
-            if (CheckInternetConnection())
+            bool isReady = false;
+
+            while (!isReady)
             {
-                if (GoogleSheet_Auth())
+                if (CheckInternetConnection())
                 {
-                    string[] batchRange = { sheetRange_data, sheetRange_total };
-                    IList<ValueRange> valueRanges = spreadSheet.ReadBatchData(batchRange);
-                    int attempt = 10;
-                    while (valueRanges == null && attempt > 0)
+                    isReady = true;
+                    if (GoogleSheet_Auth())
                     {
-                        valueRanges = spreadSheet.ReadBatchData(batchRange);
-                        --attempt;
-                        Task.Delay(500).Wait();
-                    }
+                        string[] batchRange = { sheetRange_data, sheetRange_total };
+                        IList<ValueRange> valueRanges = spreadSheet.ReadBatchData(batchRange);
+                        int attempt = 10;
+                        while (valueRanges == null && attempt > 0)
+                        {
+                            valueRanges = spreadSheet.ReadBatchData(batchRange);
+                            --attempt;
+                            Task.Delay(500).Wait();
+                        }
 
-                    if (valueRanges != null)
-                    {
-                        sheetData_data = valueRanges[0].Values;
-                        sheetData_total = valueRanges[1].Values;
+                        if (valueRanges != null)
+                        {
+                            sheetData_data = valueRanges[0].Values;
+                            sheetData_total = valueRanges[1].Values;
 
-                        label_TotalAttendance.Text = $"Số Đại biểu: {sheetData_total[0][1]}/{sheetData_total[0][0]}" /*total*/+
-                            $"\n({sheetData_total[0][2]})" /*percent*/;
+                            label_TotalAttendance.Text = $"Số Đại biểu: {sheetData_total[0][1]}/{sheetData_total[0][0]}" /*total*/+
+                                $"\n({sheetData_total[0][2]})" /*percent*/;
 
-                        DebugConsolePrint($"Number: {sheetData_total[0][1]} - Total: {sheetData_total[0][0]} - Percent: {sheetData_total[0][2]}");
+                            DebugConsolePrint($"Number: {sheetData_total[0][1]} - Total: {sheetData_total[0][0]} - Percent: {sheetData_total[0][2]}");
+                            DebugConsolePrint($"Last row: {sheetData_data.Count}");
 
-                        Task.Delay(500);
+                            Task.Delay(500);
 
-                        thread = new Thread(new ThreadStart(ThreadUpdateTotalAttendance));
-                        thread.Start();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Vui lòng kiểm tra lại chứng chỉ của Google Sheet API");
+                            thread = new Thread(new ThreadStart(ThreadUpdateTotalAttendance));
+                            thread.Start();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Vui lòng kiểm tra lại chứng chỉ của Google Sheet API");
+                        }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Vui lòng kiểm tra lại đường truyền mạng. Chương trình sẽ tiếp tục khi có internet", "Cảnh báo");
+                    Task.Delay(1000).Wait();
+                }
             }
+
         }
         #endregion
 
@@ -448,14 +473,17 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
 
         private void rjButton_Done_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Chương trình cần được khởi động để cập nhật thông số được lưu.", "Thông báo", MessageBoxButtons.OKCancel);
+            DialogResult dialogResult = MessageBox.Show("Xác nhận cập nhật chứng chỉ Google Sheet API", "Thông báo", MessageBoxButtons.OKCancel);
             if (dialogResult == DialogResult.OK)
             {
                 // Write setting
                 string last_credential_path = ConfigurationManager.AppSettings["path_temp_picked_credential"];
                 SetAppSettingValue("google_sheet_credential_path", last_credential_path);
 
-                Application.Restart();
+                panel_Setting.Visible = false;
+
+                //Application.Restart();
+                MainForm_Load(sender, e);
             }
             else if (dialogResult == DialogResult.Cancel)
             {

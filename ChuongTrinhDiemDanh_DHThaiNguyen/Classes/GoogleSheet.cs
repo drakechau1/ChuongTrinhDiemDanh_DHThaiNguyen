@@ -107,7 +107,6 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen.Classes
                 BatchUpdateValuesRequest requestBody = new BatchUpdateValuesRequest();
                 requestBody.ValueInputOption = valueInputOption;
                 requestBody.Data = valueRanges;
-
                 SpreadsheetsResource.ValuesResource.BatchUpdateRequest request =
                     service.Spreadsheets.Values.BatchUpdate(requestBody, this.spreadSheetID);
 

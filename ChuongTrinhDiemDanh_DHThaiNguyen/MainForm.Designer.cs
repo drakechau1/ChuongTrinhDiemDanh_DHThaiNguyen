@@ -129,12 +129,12 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             // panel_Main
             // 
             this.panel_Main.BackColor = System.Drawing.Color.Transparent;
+            this.panel_Main.Controls.Add(this.panel_ProfilePicture);
             this.panel_Main.Controls.Add(this.panel_Setting);
             this.panel_Main.Controls.Add(this.rjButton_Setting);
             this.panel_Main.Controls.Add(this.rjButton_Reset);
             this.panel_Main.Controls.Add(this.panel_Input);
             this.panel_Main.Controls.Add(this.panel_ProfileInfo);
-            this.panel_Main.Controls.Add(this.panel_ProfilePicture);
             this.panel_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_Main.Location = new System.Drawing.Point(0, 0);
             this.panel_Main.Name = "panel_Main";
@@ -471,6 +471,8 @@ namespace ChuongTrinhDiemDanh_DHThaiNguyen
             this.ClientSize = new System.Drawing.Size(1708, 1045);
             this.Controls.Add(this.panel_Top);
             this.Controls.Add(this.panel_Main);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(1024, 720);
             this.Name = "MainForm";
             this.Text = "Chương trình điểm danh";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
